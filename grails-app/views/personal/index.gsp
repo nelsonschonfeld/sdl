@@ -11,28 +11,24 @@
     <meta name="layout" content="page"/>
     <title>Personal</title>
     <style>
-    .demo-card-wide.mdl-card {
+    .mdl-card {
         width: 50%;
+        margin: auto;
+        margin-top: 1%;
+        margin-bottom: 1%;
     }
-    .demo-card-wide > .mdl-card__title {
-        color: rgb(255,171,64);
+    .mdl-card > .mdl-card__title {
+        color: #ef6c00;
         height: 176px;
         background: url('http://tfirdaus.github.io/mdl/images/laptop.jpg') center / cover;
-    }
-    .demo-card-wide > .mdl-card__menu {
-        color: #fff;
     }
     </style>
 </head>
 
 <body>
-
-<div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--2-col-tablet mdl-shadow--6dp mdl-typography--text-center" style="align-content: center">
-    <figure class="mdl-card__media">
-        <img src="http://tfirdaus.github.io/mdl/images/laptop.jpg" alt="" />
-    </figure>
+<div class="mdl-card mdl-typography--text-center mdl-shadow--16dp">
     <div class="mdl-card__title">
-        <h1 class="mdl-card__title-text">Nuevo Personal</h1>
+        <h2 class="mdl-card__title-text">Nuevo Personal</h2>
     </div>
     <div class="mdl-card__supporting-text">
         <form action="index.gsp" id="formNewPersonal">
@@ -48,6 +44,7 @@
                     <li class="mdl-menu__item" data-val="RU">Russia</li>
                 </ul>
             </div>
+            <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" pattern="[a-zA-Z]+(\s*[a-zA-Z]*)+(\s*[a-zA-Z]*)" id="name" />
                 <label class="mdl-textfield__label" for="name">Nombre</label>
@@ -83,22 +80,23 @@
             </div>
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" pattern="[0-9]{8,8}" id="phone">
-                <label class="mdl-textfield__label" for="phone">Celular...</label>
-                <span class="mdl-textfield__error">Por favor, Debe ser solo 8 (ocho) numero sin puntos!</span>
+                <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="phone">
+                <label class="mdl-textfield__label" for="phone">Telefono...</label>
+                <span class="mdl-textfield__error">Por favor, Debe ser solo numeros!</span>
             </div>
+            <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="se" pattern="[0-9]{8,8}" id="phone">
-                <label class="mdl-textfield__label" for="phone">Celular...</label>
+                <input class="mdl-textfield__input" type="se" id="cargo">
+                <label class="mdl-textfield__label" for="cargo">Cargo...</label>
                 <span class="mdl-textfield__error">Por favor, Debe ser solo 8 (ocho) numero sin puntos!</span>
             </div>
-
-
         </form>
     </div>
-    <div class="mdl-card__actions mdl-card--border">
+    <div class="mdl-card__actions mdl-card--border mdl-shadow--16dp">
         <button class="mdl-button mdl-button--raised mdl-button--accent" type="reset">Cancelar</button>
         <button class="mdl-button mdl-button--raised mdl-button--colored " type="submit" >Guardar</button>
+    </div>
+    <div class="mdl-card__menu">
     </div>
 </div>
 </body>
