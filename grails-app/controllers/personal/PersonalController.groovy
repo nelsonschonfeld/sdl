@@ -13,6 +13,7 @@ class PersonalController {
     }
 
     def create() {
+        def saveParamshere = params
     }
 
 

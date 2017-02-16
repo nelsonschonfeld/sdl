@@ -1,0 +1,11 @@
+.mdl-card {
+    width: 50%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.mdl-card > .mdl-card__title {
+    color: #ef6c00;
+    height: 176px;
+    background: url('http://tfirdaus.github.io/mdl/images/laptop.jpg') center / cover;
+}

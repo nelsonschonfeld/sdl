@@ -6,28 +6,40 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+<html >
 <head>
     <g:meta name="viewport" content="width=device-width, initial-scale=1.0"></g:meta>
     <title><g:layoutTitle default="SDL - Sistema de Liquidacion"/></title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'materialDesign/material.green-orange.min.css')}"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'materialDesign/material.min.css.map')}"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'materialDesign/select/getmdl-select.min.css.map')}"/>
+
+    <!-- Angular Material requires Angular.js Libraries -->
     <script src="${resource(dir: 'js', file: 'angular/angular.min.js')}"></script>
-    <script defer src="${resource(dir: 'js', file: 'materialDesign/material.min.js')}"></script>
-    <script defer src="${resource(dir: 'js', file: 'materialDesign/material.min.js.map')}"></script>
-    <script defer src="${resource(dir: 'js', file: 'materialDesign/select/getmdl-select.min.js')}"></script>
-    <script defer src="${resource(dir: 'js', file: 'materialDesign/select/getmdl-select.min.js.map')}"></script>
+    <script src="${resource(dir: 'js', file: 'angular/angular-animate.min.js')}"></script>
+    <script src="${resource(dir: 'js', file: 'angular/angular-aria.min.js')}"></script>
+    <script src="${resource(dir: 'js', file: 'angular/angular-messages.min.js')}"></script>
+
+    <!-- Angular Material Lite Library -->
+    <script defer src="${resource(dir: 'js', file: 'materialDesignLite/material.min.js')}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'materialDesignLite/material.green-orange.min.css')}"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'materialDesignLite/card.css')}"/>
+
+    <!-- Angular Material Library-->
+    <script defer src="${resource(dir: 'js', file: 'materialDesign/angular-material.min.js')}"></script>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'materialDesign/angular-material.min.css')}"/>
+
+    <!-- Your application bootstrap  -->
+    <script type="text/javascript">
+        angular.module('menuDemoCustomTrigger', ['ngMaterial', 'ngMessages']);
+    </script>
 
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
     <g:layoutHead/>
     <r:layoutResources />
 </head>
-<body ng-app="">
+<body ng-app="menuDemoCustomTrigger" ng-cloak="">
 
 <!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" >
     <!--Header -->
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
@@ -38,10 +50,20 @@
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a href="${createLink(uri: '/')}"><button class="mdl-button mdl-js-button mdl-button--accent">Inicio</button></a>
-            <a href="personal"><button class="mdl-button mdl-js-button mdl-button--accent">Personal</button></a>
-            <a href="cargo"><button class="mdl-button mdl-js-button mdl-button--accent">Cargo</button></a>
-            <a href="liquidacion"><button class="mdl-button mdl-js-button mdl-button--accent">Liquidación</button></a>
-            <a href="contacto"><button class="mdl-button mdl-js-button mdl-button--accent">Contacto</button></a>
+            <md-menu>
+                <md-button class="mdl-button mdl-js-button mdl-button--accent" ng-mouseenter="$mdMenu.open()">
+                    Personal
+                </md-button>
+                <md-menu-content width="2" ng-mouseleave="$mdMenu.close()">
+                    <md-menu-item><a href="${createLink(uri: '/personal')}"><md-button>Listado</md-button></a></md-menu-item>
+                    <md-menu-item><a href="${createLink(uri: '/personal/create')}"><md-button>Crear</md-button></a></md-menu-item>
+                    <md-menu-item><a href="${createLink(uri: '/personal/delete')}"><md-button>Eliminar</md-button></a></md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            <a href="${createLink(uri: '/cargo')}"><button class="mdl-button mdl-js-button mdl-button--accent">Cargo</button></a>
+            <a href="${createLink(uri: '/liquidacion')}"><button class="mdl-button mdl-js-button mdl-button--accent">Liquidación</button></a>
+            <a href="${createLink(uri: '/contacto')}"><button class="mdl-button mdl-js-button mdl-button--accent">Contacto</button></a>
+
             <!-- Accent-colored flat button -->
             <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                 <i class="material-icons">add</i>
@@ -66,7 +88,7 @@
         <header class="demo-drawer-header">
 
             <div class="demo-avatar-dropdown mdl-color--orange-400">
-                <img src="images/grails_logo.png" class="demo-avatar">
+                <img src="${resource(dir: 'images', file: 'grails_logo.png')}" class="demo-avatar">
                 <span>hello@example.com</span>
                 <div class="mdl-layout-spacer"></div>
             </div>
@@ -74,10 +96,10 @@
         <nav class="demo-navigation mdl-navigation ">
             <g:link class="mdl-navigation__link" ></g:link>
             <a class="mdl-navigation__link" href="${createLink(uri: '/')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Inicio</a>
-            <a class="mdl-navigation__link" href="personal"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">perm_identity</i>Personal</a>
-            <a class="mdl-navigation__link" href="cargo"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment_turned_in</i>Cargo</a>
-            <a class="mdl-navigation__link" href="liquidacion"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">content_paste</i>Liquidacion</a>
-            <a class="mdl-navigation__link" href="contacto"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">contacts</i>Contactos</a>
+            <a class="mdl-navigation__link" href="${createLink(uri: '/personal')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">perm_identity</i>Personal</a>
+            <a class="mdl-navigation__link" href="${createLink(uri: '/cargo')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment_turned_in</i>Cargo</a>
+            <a class="mdl-navigation__link" href="${createLink(uri: '/liquidacion')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">content_paste</i>Liquidacion</a>
+            <a class="mdl-navigation__link" href="${createLink(uri: '/contacto')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">contacts</i>Contactos</a>
         </nav>
     </div>
     <!--Main or Body -->
