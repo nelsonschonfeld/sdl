@@ -60,14 +60,23 @@
                     <md-menu-item><a href="${createLink(uri: '/personal/delete')}"><md-button>Eliminar</md-button></a></md-menu-item>
                 </md-menu-content>
             </md-menu>
-            <a href="${createLink(uri: '/cargo')}"><button class="mdl-button mdl-js-button mdl-button--accent">Cargo</button></a>
+            <md-menu>
+                <md-button class="mdl-button mdl-js-button mdl-button--accent" ng-mouseenter="$mdMenu.open()">
+                    Cargo
+                </md-button>
+                <md-menu-content width="2" ng-mouseleave="$mdMenu.close()">
+                    <md-menu-item><a href="${createLink(uri: '/cargo')}"><md-button>Listado</md-button></a></md-menu-item>
+                    <md-menu-item><a href="${createLink(uri: '/cargo/create')}"><md-button>Crear</md-button></a></md-menu-item>
+                    <md-menu-item><a href="${createLink(uri: '/cargo/delete')}"><md-button>Eliminar</md-button></a></md-menu-item>
+                </md-menu-content>
+            </md-menu>
             <a href="${createLink(uri: '/liquidacion')}"><button class="mdl-button mdl-js-button mdl-button--accent">Liquidación</button></a>
             <a href="${createLink(uri: '/contacto')}"><button class="mdl-button mdl-js-button mdl-button--accent">Contacto</button></a>
 
-            <!-- Accent-colored flat button -->
+            <!-- Accent-colored flat button
             <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                 <i class="material-icons">add</i>
-            </button>
+            </button>-->
             </nav>
             <!-- Search -->
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
@@ -105,7 +114,25 @@
     <!--Main or Body -->
     <main class="mdl-layout__content">
         <div class="page-content">
+            <g:if test="${formLayout}">
+                <div class="mdl-card mdl-typography--text-center mdl-shadow--16dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">${formLayout}</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+            </g:if>
+
             <g:layoutBody/>
+
+            <g:if test="${formLayout}">
+                </div>
+                <div class="mdl-card__actions mdl-card--border mdl-shadow--16dp">
+
+                </div>
+                <div class="mdl-card__menu">
+                </div>
+                </div>
+            </g:if>
         </div>
     </main>
     <!--Footer -->

@@ -14,8 +14,7 @@
 <body>
 CARGOS
 
-<g:each in="${cargoList}" var="cargo">
-    <li>${cargo.name}</li>
-</g:each>
+<ul ng-repeat="cargo in ${cargos}">
+    {{cargo.name}} - {{cargo.description}}</ul>
 </body>
 </html>
