@@ -4,6 +4,7 @@ import cargos.Cargo
 import grails.converters.JSON
 
 class PersonalController {
+    static responseFormats = ['json']
 
     def personalService
     def cargoService
@@ -21,13 +22,9 @@ class PersonalController {
     }
 
     def save() {
-        def response= personalService.newPersonal(params)
-        if(response.status == 201){
-            flash.message = response.message
-        }else{
-            flash.error = response.message
-        }
-        redirect(action: "create")
+        def data = request.getJSON()
+        def resp= personalService.newPersonal(data)
+        respond(resp)
     }
 
 

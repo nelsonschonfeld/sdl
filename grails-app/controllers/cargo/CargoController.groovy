@@ -3,6 +3,7 @@ package cargo
 import grails.converters.JSON
 
 class CargoController {
+    static responseFormats = ['json']
 
     def cargoService
 
@@ -19,12 +20,8 @@ class CargoController {
     }
 
     def save() {
-        def response= cargoService.newCargo(params)
-        if(response.status == 201){
-            flash.message = response.message
-        }else{
-            flash.error = response.message
-        }
-        redirect(action: "create")
+        def data = request.getJSON()
+        def resp= cargoService.newCargo(data)
+        respond(resp)
     }
 }

@@ -40,7 +40,26 @@ class BootStrap {
         personal1.addres = "los angeles 44"
         personal1.phone = "3423423"
         personal1.cargo = cargo1
+        personal.active = false
         personal1.save()
+
+        def cargo2 = new Cargo()
+        cargo2.name = "Recepcionista"
+        cargo2.description = "Recepcionista de la secundaria"
+        //cargo2.active = true
+        cargo2.save()
+
+        def personal2 = new Personal()
+        personal2.name = "mauro"
+        personal2.surname = "heit"
+        personal2.email= "mauro@hotmail.com"
+        personal2.dateBorn = new Date()
+        personal2.dni = 39555129
+        personal2.cuil = "20-39555129-4"
+        personal2.addres = "los angeles 129"
+        personal2.phone = "3423429"
+        personal2.cargo = cargo2
+        personal2.save()
     }
     def destroy = {
     }

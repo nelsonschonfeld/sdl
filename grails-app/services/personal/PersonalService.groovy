@@ -15,7 +15,7 @@ class PersonalService {
         personal.name= pers.name
         personal.surname=pers.surname
         personal.email=pers.email
-        personal.dateBorn=new Date(pers.dateBorn)
+        personal.dateBorn=personal.dateBorn= Date.parse("yyyy-MM-dd", pers.dateBorn);
         personal.dni=pers.cuil.substring(3,11).toLong()
         personal.cuil=pers.cuil
         personal.addres=pers.addres

@@ -1,3 +1,7 @@
+import org.apache.log4j.DailyRollingFileAppender
+import org.apache.log4j.Level
+import org.apache.log4j.PatternLayout
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -103,11 +107,7 @@ environments {
 
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+    def logLayoutPattern = new PatternLayout("%d{yyyy-MM-dd/HH:mm:ss.SSS} [%t] %x %-5p %c{2} - %m%n")
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
@@ -120,6 +120,27 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+    debug   'grails.app.task',
+            'grails.app.controller',
+            'grails.app.service',
+            'grails.app',
+            'src.groovy.subscriptions.*',
+            'src.groovy.utils.*',
+            'grails.app.jobs'
+
+    appenders {
+        appender new DailyRollingFileAppender(
+                name: "appLog",
+                append: true,
+                threshold: Level.toLevel("INFO"),
+                file: "/mnt/logs/tomcat_logs/testRecurringPayments.log",
+                datePattern: "'.'yyyy-MM-dd",   //Rollover at midnight each day.
+                layout: logLayoutPattern
+        )
+    }
+    root {
+        info 'appLog'
+    }
 }
 
 

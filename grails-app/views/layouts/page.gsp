@@ -27,16 +27,14 @@
     <script defer src="${resource(dir: 'js', file: 'materialDesign/angular-material.min.js')}"></script>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'materialDesign/angular-material.min.css')}"/>
 
-    <!-- Your application bootstrap  -->
-    <script type="text/javascript">
-        angular.module('menuDemoCustomTrigger', ['ngMaterial', 'ngMessages']);
-    </script>
-
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
+
+    <script defer src="${resource(dir: 'js', file: 'angularApp.js')}"></script>
+
     <g:layoutHead/>
     <r:layoutResources />
 </head>
-<body ng-app="menuDemoCustomTrigger" ng-cloak="">
+<body  ng-app="sdlApp" ng-cloak="">
 
 <!-- Always shows a header, even in smaller screens. -->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" >
