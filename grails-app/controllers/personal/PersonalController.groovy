@@ -12,7 +12,9 @@ class PersonalController {
     def index() {
         def personalList= personalService.personalList()
         def personales = personalList as JSON
-        render(view: "index", model: [personales: personales])
+        def cargosList = cargoService.cargoList()
+        def cargos = cargosList as JSON
+        render(view: "index", model: [personales: personales, cargos: cargos])
     }
 
     def create() {
@@ -27,5 +29,22 @@ class PersonalController {
         respond(resp)
     }
 
+    def delete() {
+        def data = request.getJSON()
+        def resp= personalService.deletePersonal(data)
+        respond(resp)
+    }
+
+    def inactive() {
+        def data = request.getJSON()
+        def resp= personalService.inactivePersonal(data)
+        respond(resp)
+    }
+
+    def update() {
+        def data = request.getJSON()
+        def resp= personalService.updatePersonal(data)
+        respond(resp)
+    }
 
 }

@@ -16,6 +16,7 @@
     <script src="${resource(dir: 'js', file: 'angular/angular-animate.min.js')}"></script>
     <script src="${resource(dir: 'js', file: 'angular/angular-aria.min.js')}"></script>
     <script src="${resource(dir: 'js', file: 'angular/angular-messages.min.js')}"></script>
+    <script src="${resource(dir: 'js', file: 'angular/angular-route.min.js')}"></script>
 
     <!-- Angular Material Lite Library -->
     <script defer src="${resource(dir: 'js', file: 'materialDesignLite/material.min.js')}"></script>
@@ -49,23 +50,21 @@
             <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a href="${createLink(uri: '/')}"><button class="mdl-button mdl-js-button mdl-button--accent">Inicio</button></a>
             <md-menu>
-                <md-button class="mdl-button mdl-js-button mdl-button--accent" ng-mouseenter="$mdMenu.open()">
+                <md-button class="mdl-button mdl-js-button mdl-button--accent" ng-click="$mdMenu.open()">
                     Personal
                 </md-button>
                 <md-menu-content width="2" ng-mouseleave="$mdMenu.close()">
                     <md-menu-item><a href="${createLink(uri: '/personal')}"><md-button>Listado</md-button></a></md-menu-item>
                     <md-menu-item><a href="${createLink(uri: '/personal/create')}"><md-button>Crear</md-button></a></md-menu-item>
-                    <md-menu-item><a href="${createLink(uri: '/personal/delete')}"><md-button>Eliminar</md-button></a></md-menu-item>
                 </md-menu-content>
             </md-menu>
             <md-menu>
-                <md-button class="mdl-button mdl-js-button mdl-button--accent" ng-mouseenter="$mdMenu.open()">
+                <md-button class="mdl-button mdl-js-button mdl-button--accent" ng-click="$mdMenu.open()">
                     Cargo
                 </md-button>
                 <md-menu-content width="2" ng-mouseleave="$mdMenu.close()">
                     <md-menu-item><a href="${createLink(uri: '/cargo')}"><md-button>Listado</md-button></a></md-menu-item>
                     <md-menu-item><a href="${createLink(uri: '/cargo/create')}"><md-button>Crear</md-button></a></md-menu-item>
-                    <md-menu-item><a href="${createLink(uri: '/cargo/delete')}"><md-button>Eliminar</md-button></a></md-menu-item>
                 </md-menu-content>
             </md-menu>
             <a href="${createLink(uri: '/liquidacion')}"><button class="mdl-button mdl-js-button mdl-button--accent">Liquidación</button></a>
@@ -81,7 +80,7 @@
                   mdl-textfield--floating-label mdl-textfield--align-right">
                 <label class="mdl-button mdl-js-button mdl-button--icon"
                        for="fixed-header-drawer-exp">
-                    <i class="material-icons">search</i>
+                    <md-icon md-svg-src="${resource(dir: 'images', file: 'angularMaterial/ic_search_black_18px.svg')}" class="s18" aria-label="Search"></md-icon>
                 </label>
                 <div class="mdl-textfield__expandable-holder">
                     <input class="mdl-textfield__input" type="text" name="sample"
@@ -95,18 +94,33 @@
         <header class="demo-drawer-header">
 
             <div class="demo-avatar-dropdown mdl-color--orange-400">
-                <img src="${resource(dir: 'images', file: 'grails_logo.png')}" class="demo-avatar">
+                <img src="${resource(dir: 'images', file: 'angularMaterial/ic_person_black_24px.svg')}" class="demo-avatar">
                 <span>hello@example.com</span>
                 <div class="mdl-layout-spacer"></div>
             </div>
         </header>
         <nav class="demo-navigation mdl-navigation ">
-            <g:link class="mdl-navigation__link" ></g:link>
-            <a class="mdl-navigation__link" href="${createLink(uri: '/')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Inicio</a>
-            <a class="mdl-navigation__link" href="${createLink(uri: '/personal')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">perm_identity</i>Personal</a>
-            <a class="mdl-navigation__link" href="${createLink(uri: '/cargo')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment_turned_in</i>Cargo</a>
-            <a class="mdl-navigation__link" href="${createLink(uri: '/liquidacion')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">content_paste</i>Liquidacion</a>
-            <a class="mdl-navigation__link" href="${createLink(uri: '/contacto')}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">contacts</i>Contactos</a>
+            <md-toolbar class="md-menu-toolbar">
+                <md-menu-bar>
+                    <md-button ng-href="${createLink(uri: '/')}"><md-icon md-svg-src="${resource(dir: 'images', file: 'angularMaterial/ic_home_black_24px.svg')}" aria-label="Inicio"></md-icon>Inicio</md-button>
+                    <md-menu>
+                        <md-button ng-click="$mdMenu.open()"><md-icon md-svg-src="${resource(dir: 'images', file: 'angularMaterial/ic_group_black_18px.svg')}" aria-label="Personal"></md-icon>Personal</md-button>
+                        <md-menu-content width="2">
+                            <md-menu-item><md-button ng-href="${createLink(uri: '/personal')}">Listado</md-button></md-menu-item>
+                            <md-menu-item><md-button ng-href="${createLink(uri: '/personal/create')}">Crear</md-button></md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    <md-menu>
+                        <md-button ng-click="$mdMenu.open()"><md-icon md-svg-src="${resource(dir: 'images', file: 'angularMaterial/ic_work_black_18px.svg')}" aria-label="Cargo"></md-icon>Cargo</md-button>
+                        <md-menu-content width="2">
+                            <md-menu-item><md-button ng-href="${createLink(uri: '/cargo')}">Listado</md-button></md-menu-item>
+                            <md-menu-item><md-button ng-href="${createLink(uri: '/cargo/create')}">Crear</md-button></md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    <md-button ng-href="${createLink(uri: '/liquidacion')}"><md-icon md-svg-src="${resource(dir: 'images', file: 'angularMaterial/ic_description_black_24px.svg')}" aria-label="Liquidacion"></md-icon>Liquidación</md-button>
+                    <md-button ng-href="${createLink(uri: '/contacto')}"><md-icon md-svg-src="${resource(dir: 'images', file: 'angularMaterial/ic_contact_phone_black_18px.svg')}" aria-label="Contacto"></md-icon>Contacto</md-button>
+                </md-menu-bar>
+            </md-toolbar>
         </nav>
     </div>
     <!--Main or Body -->

@@ -59,6 +59,7 @@ class BootStrap {
         personal2.addres = "los angeles 129"
         personal2.phone = "3423429"
         personal2.cargo = cargo2
+        personal2.active = false
         personal2.save()
     }
     def destroy = {
