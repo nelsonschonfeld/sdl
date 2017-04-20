@@ -47,4 +47,10 @@ class PersonalController {
         respond(resp)
     }
 
+    def inactiveAll() {
+        def data = request.getJSON()
+        def resp= personalService.inactiveAllPersonal(data)
+        respond(resp)
+    }
+
 }

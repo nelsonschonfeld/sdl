@@ -1,4 +1,4 @@
-<form name="formNewPersonal" ng-submit="submitForm(formData, formNewPersonal.$valid, personal)" novalidate>
+<form name="formNewPersonal" ng-submit="submitForm(formData, formNewPersonal.$valid)" novalidate>
 
     <div layout="row">
         <md-input-container class="md-icon-float md-block" flex="50">
@@ -102,7 +102,7 @@
             </div>
         </md-input-container>
     </div>
-    <button class="mdl-button mdl-button--raised" ng-click="reset()" type="button">Limpiar</button>
+    <button class="mdl-button mdl-button--raised" ng-click="reset()" type="button">Cancelar</button>
     <button type="submit" class="mdl-button mdl-button--raised mdl-button--colored "
             ng-disabled="formNewPersonal.$invalid || formNewPersonal.$pristine">Guardar</button>
 </form>

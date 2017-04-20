@@ -74,4 +74,27 @@ class PersonalService {
             return [status: 201, message:"Personal ${pers.name} actualizado correctamente",  persUpdated: personal]
         }
     }
+
+    def inactiveAllPersonal(Object pers){
+        def personal = null
+        def errors= []
+        def updated= []
+        pers.each {
+            personal = Personal.get(it.id)
+            personal.active = !it.active
+            personal.save(flush: true)
+            if (personal.hasErrors()==true) {
+                log.error("Error al activar/desactivar el Personal - ${personal.getErrors()}")
+                errors.push("Error al activar/desactivar el Personal - ${personal.getErrors()}")
+            }
+            updated.push(personal)
+        }
+
+        if (errors.size()>0){
+            log.error("Error al activar/desactivar el Personal - ${personal.getErrors()}")
+            return [status: 404, message: "Error al activar/desactivar a todos" ,  persAllInactives: updated]
+        }else{
+            return [status: 201, message: "Correcto al activar/desactivar a todos" ,  persAllInactives: updated]
+        }
+    }
 }
